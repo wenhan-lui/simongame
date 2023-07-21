@@ -75,7 +75,9 @@ $(".btn").click(function () {
   if (level === 0) {
     userClickedPattern = [];
     gamePattern = [];
-    nextSequence();
-    $("h1").text("Level " + level);
+    setTimeout(function () {
+      nextSequence();
+      $("h1").text("Level " + level);
+    }, 1000);
   }
 });
