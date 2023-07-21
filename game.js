@@ -41,13 +41,13 @@ function checkAnswer() {
         $("h1").text("Level " + level);
       }, 600);
     }
-  } else {
+  } else if (level > 0) {
     $("body").addClass("game-over");
-    level = 0;
-    $("h1").text("Game Over, Press Any Key to Restart");
+    $("h1").text("Game Over, Press Any Key or Button to Restart");
     playSound("wrong");
     setTimeout(function () {
       $("body").removeClass("game-over");
+      level = 0;
     }, 300);
   }
 }
@@ -60,8 +60,18 @@ $(".btn").click(function () {
   checkAnswer();
 });
 
-//to start the game
+//to start the game via keypress
 $(document).keypress(function () {
+  if (level === 0) {
+    userClickedPattern = [];
+    gamePattern = [];
+    nextSequence();
+    $("h1").text("Level " + level);
+  }
+});
+
+//to start game via button press.
+$(".btn").click(function () {
   if (level === 0) {
     userClickedPattern = [];
     gamePattern = [];
